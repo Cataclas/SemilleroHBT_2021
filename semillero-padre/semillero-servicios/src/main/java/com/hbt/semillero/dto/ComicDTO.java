@@ -13,7 +13,7 @@ import com.hbt.semillero.enums.TematicaEnum;
  * 
  * @author cataclas
  */
-public class ComicDTO implements Serializable {
+public class ComicDTO extends ResultadoDTO implements Serializable {
 
 	/**
 	 * Atributo que determina la version
@@ -32,6 +32,13 @@ public class ComicDTO implements Serializable {
 	private LocalDate fechaVenta;
 	private EstadoEnum estadoEnum;
 	private Long cantidad;
+
+	/**
+	 * Constructor vacio
+	 */
+	public ComicDTO(){
+		// Constructor vacio
+	}
 
 	/**
 	 * 
