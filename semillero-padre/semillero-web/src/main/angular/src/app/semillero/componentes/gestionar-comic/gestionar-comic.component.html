@@ -1,0 +1,190 @@
+<div class="container-fluid">
+    <!-- <h3 class="fw-bold"><span class="fa-arrow-right fas text-primary"></span> Gestionar Comic</h3> -->
+    <!-- <hr> -->
+
+    <div class="fade m-0 modal p-0" id="myModal" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="fw-bold modal-title">Agregar / Editar Comic</h5>
+                    <button type="button" class="btn-close shadow-none bg-transparent" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 px-lg-5">
+                    <form>
+                        <div class="row">
+                            <div class="col-8">
+                                <label class="mb-0 mt-3 form-label" for="nombreComic">Nombre:</label>
+                                <input type="text" class="form-control" id="nombreComic" maxlength="50" name="nombre" [(ngModel)]="comicDTO.nombre">
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="mb-0 mt-3" for="tematica">Temática:</label>
+                                    <select class="form-control" id="tematica" name="tematica" [(ngModel)]="comicDTO.tematicaEnum">
+                                        <option value="AVENTURAS">AVENTURAS</option>
+                                        <option value="BELICO">BELICO</option>
+                                        <option value="DEPORTIVO">DEPORTIVO</option>
+                                        <option value="FANTASTICO">FANTASTICO</option>
+                                        <option value="CIENCIA_FICCION">CIENCIA FICCION</option>
+                                        <option value="HISTORICO">HISTORICO</option>
+                                        <option value="HORROR">HORROR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="mb-0 mt-3" for="editorialComic">Editorial:</label>
+                                <input type="text" class="form-control" id="editorialComic" name="editorial" [(ngModel)]="comicDTO.editorial">
+                            </div>
+                            <div class="col-6">
+                                <label class="mb-0 mt-3" for="coleccion">Colección:</label>
+                                <input type="text" class="form-control" id="coleccion" name="coleccion" [(ngModel)]="comicDTO.coleccion">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="mb-0 mt-3" for="autores">Autores:</label>
+                                <textarea class="form-control" id="autores" rows="3" name="autores" [(ngModel)]="comicDTO.autores"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="mb-0 mt-3" for="numeroPaginas">Páginas:</label>
+                                <input type="number" class="form-control" id="numeroPaginas" name="numPaginas" [(ngModel)]="comicDTO.numeroPaginas">
+                            </div>
+
+                            <div class="col-4">
+                                <label class="mb-0 mt-3" for="precio">Precio:</label>
+                                <input type="number" class="form-control" id="precio" step=".01" name="precio" [(ngModel)]="comicDTO.precio">
+                            </div>
+
+                            <div class="col-4">
+                                <label class="mb-0 mt-3" for="color">A color:</label>
+                                <div class="col-12 mt-1 row">
+                                    <div class="form-check form-check-inline col-6 m-0">
+                                        <input type="radio" id="customRadioInline1" name="color" class="form-check-input" [value]="true" [(ngModel)]="comicDTO.color">
+                                        <label class="form-check-label text-black" for="customRadioInline1">Si</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-6 m-0">
+                                        <input type="radio" id="customRadioInline2" name="color" class="form-check-input" [value]="false" [(ngModel)]="comicDTO.color">
+                                        <label class="form-check-label text-black" for="customRadioInline2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- <pre>{{ comicDTO | json }}</pre> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="border-0 btn btn-success lh-lg px-5 rounded-pill shadow w-auto" (click)="guardarComic()"><span class="text-white">Guardar</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="" class="position-relative">
+        <div class="row g-0 mt-3">
+            <div class="col-12 g-0 mb-3 row">
+                <div class="align-items-center col-sm-10 d-flex">
+                    <input type="search" class="form-control lh-lg rounded-pill shadow" (input)="cambioSearch($event.target.value)">
+                </div>
+                <div class="align-items-center col-sm-2 d-flex justify-content-end">
+                    <button class="btn btn-success lh-lg px-4 rounded-pill shadow w-auto" type="button" data-bs-toggle="modal" data-bs-target="#myModal" (click)="abrirForm(-1)">
+                        <i class="fa-plus fas pe-2 text-white"></i>
+                        <span class="text-white">Nuevo</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <table class="align-middle shadow table table-hover table-light">
+                    <!-- <caption>Gestionar Comics</caption> -->
+                    <thead class="table-danger">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Temática</th>
+                            <th scope="col">Editorial</th>
+                            <th scope="col">Colección</th>
+                            <th scope="col">Autores</th>
+                            <th scope="col">Páginas</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">A color</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--date:"MM/dd/yy"
+                        | uppercase-->
+                        <tr *ngFor="let comic of listaComics;let i=index;">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{comic.nombre }}</td>
+                            <td>{{comic.tematicaEnum | uppercase }}</td>
+                            <td>{{comic.editorial }}</td>
+                            <td>{{comic.coleccion }}</td>
+                            <td>{{comic.autores }}</td>
+                            <td>{{comic.numeroPaginas | number }}</td>
+                            <td>{{comic.precio | number: '.2'}}</td>
+                            <td>{{comic.color ? 'Si' : 'No' }}</td>
+                            <td>
+                                <div class="d-flex justify-content-around">
+                                    <i class="2x fa-search fas ml-1 text-primary" (click)="imprimirInfoComic(i)" title="Consultar"></i>
+                                    <i class="2x fa-pencil-alt fas ml-1 text-warning" data-bs-toggle="modal" data-bs-target="#myModal" (click)="abrirForm(i)" title="Editar"></i>
+                                    <i class="2x fa-times-circle far ml-1 text-danger" (click)="eliminarComic(i)" title="Eliminar"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <pre>{{ listaComics | json }}</pre> -->
+            <!-- <pre>{{ nombre | json }}</pre> -->
+        </div>
+
+        <div *ngIf="mostrarItem" class="bottom-0 d-flex end-0 h-100 position-fixed start-0 top-0 w-100" style="z-index: 1; background: rgb(0 0 0 / 60%);">
+            <div class="alert alert-warning m-auto w-auto" role="alert">
+                <h5 class="fw-bold px-5 text-center">ITEM SELECCIONADO</h5>
+                <hr>
+                <table class="my-4">
+                    <tr class="lh-1">
+                        <th>Nombre:</th>
+                        <td>{{comicDTOInfo.nombre}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Temática:</th>
+                        <td>{{comicDTOInfo.tematicaEnum}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Editorial:</th>
+                        <td>{{comicDTOInfo.editorial}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Colección:</th>
+                        <td>{{comicDTOInfo.coleccion}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Autores:</th>
+                        <td>{{comicDTOInfo.autores}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Páginas:</th>
+                        <td>{{comicDTOInfo.numeroPaginas}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>Precio:</th>
+                        <td>{{comicDTOInfo.precio}}</td>
+                    </tr>
+                    <tr class="lh-1">
+                        <th>A color:</th>
+                        <td>{{comicDTOInfo.color ? 'Si' : 'No'}}</td>
+                    </tr>
+                </table>
+                <hr>
+                <!-- <pre>{{ comicDTOInfo | json }}</pre> -->
+                <button type="button" class="border-0 btn btn-dark float-end shadow-sm" (click)="cerrar()">Cerrar</button>
+            </div>
+        </div>
+
+    </form>
+</div>
