@@ -5,13 +5,13 @@ Proyecto - Semillero HBT 2021 (Java - Angular)
 
 <img src="screenshot/inicio.png">
 
-## Lsta
+## Lista
 
 <img src="screenshot/listar.png">
 
 ## Consulta Uno
 
-<img src="screenshot/inicio.png">
+<img src="screenshot/consulta_uno.png">
 
 ## Formulario
 
