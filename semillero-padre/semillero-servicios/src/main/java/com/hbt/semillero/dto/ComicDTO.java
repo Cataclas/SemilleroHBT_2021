@@ -8,29 +8,63 @@ import com.hbt.semillero.enums.EstadoEnum;
 import com.hbt.semillero.enums.TematicaEnum;
 
 /**
- * <b>Descripción:<b> Clase que determina el dto a usar para modificar,
- * consultar y posteriormente eliminar un comic
- * 
+ * <b>Descripción:</b> Clase que determina el dto a usar para gestionar Comics
  * @author cataclas
  */
 public class ComicDTO extends ResultadoDTO implements Serializable {
 
 	/**
-	 * Atributo que determina la version
+	 * Serializador de la clase
 	 */
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Atributo id del comic
+	 */
 	private Long id;
+	/**
+	 * Atributo nombre del comic
+	 */
 	private String nombre;
+	/**
+	 * Atributo editorial del comic
+	 */
 	private String editorial;
+
+	/**
+	 * Atributo de tipo Enum, hace referencia a la tematica del comic
+	 */
 	private TematicaEnum tematicaEnum;
+	/**
+	 * Atributo colección del comic
+	 */
 	private String coleccion;
+	/**
+	 * Atributo numero de paginas del comic
+	 */
 	private Integer numeroPaginas;
+	/**
+	 * Atributo precio del comic
+	 */
 	private BigDecimal precio;
+	/**
+	 * Atributo autores del comic
+	 */
 	private String autores;
+	/**
+	 * Atributo color del comic
+	 */
 	private Boolean color;
+	/**
+	 * Atributo fecha de venta del comic
+	 */
 	private LocalDate fechaVenta;
+	/**
+	 * Atributo de tipo Enum, hace referencia al estado del comic
+	 */
 	private EstadoEnum estadoEnum;
+	/**
+	 * Atributo cantidad del comic
+	 */
 	private Long cantidad;
 
 	/**
@@ -41,7 +75,6 @@ public class ComicDTO extends ResultadoDTO implements Serializable {
 	}
 
 	/**
-	 * 
 	 * Constructor de la clase.
 	 * @param id
 	 * @param nombre

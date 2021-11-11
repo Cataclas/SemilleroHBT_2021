@@ -20,12 +20,11 @@ import javax.persistence.Table;
 import com.hbt.semillero.enums.EstadoEnum;
 import com.hbt.semillero.enums.TematicaEnum;
 
+
 /**
- * <b>Descripción:<b> Clase que determina la entidad que permite representar la
+ * <b>Descripción:</b> Clase que establece la entidad que permite representar la
  * tabla "DB_SEMILLERO"."COMIC"
- * 
  * @author cataclas
- * @version
  */
 @Entity
 @Table(name = "COMIC")
@@ -38,24 +37,62 @@ public class Comic implements Serializable {
 	 * array de bytes.
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Atributo id del comic
+	 */
 	private Long id;
+	/**
+	 * Atributo nombre del comic
+	 */
 	private String nombre;
+	/**
+	 * Atributo editorial del comic
+	 */
 	private String editorial;
-	private TematicaEnum tematicaEnum;
-	private String coleccion;
-	private Integer numeroPaginas;
-	private BigDecimal precio;
-	private String autores;
-	private Boolean color;
-	private LocalDate fechaVenta;
-	private EstadoEnum estadoEnum;
-	private Long cantidad;
 
 	/**
-	 * Constructor de la clase.
+	 * Atributo de tipo Enum, hace referencia a la tematica del comic
+	 */
+	private TematicaEnum tematicaEnum;
+	/**
+	 * Atributo colección del comic
+	 */
+	private String coleccion;
+	/**
+	 * Atributo numero de paginas del comic
+	 */
+	private Integer numeroPaginas;
+	/**
+	 * Atributo precio del comic
+	 */
+	private BigDecimal precio;
+	/**
+	 * Atributo autores del comic
+	 */
+	private String autores;
+	/**
+	 * Atributo color del comic
+	 */
+	private Boolean color;
+	/**
+	 * Atributo fecha de venta del comic
+	 */
+	private LocalDate fechaVenta;
+	/**
+	 * Atributo de tipo Enum, hace referencia al estado del comic
+	 */
+	private EstadoEnum estadoEnum;
+	/**
+	 * Atributo cantidad del comic
+	 */
+	private Long cantidad;
+
+
+	/**
+	 * Constructor vacio de la clase.
 	 */
 	public Comic() {
-
+		// Constructor vacio
 	}
 
 	/**

@@ -7,16 +7,22 @@ export class ComicDTO {
     public editorial : string;
     
     public tematicaEnum : string;
-
+    
     public coleccion : string;
 
     public numeroPaginas : number;
-
+    
     public precio : number;
-
+    
     public autores : string;
-
+    
     public color : boolean;
+    
+    public fechaVenta : Date;
+
+    public estadoEnum : string;
+
+    public cantidad : number;
 
     constructor(){
         

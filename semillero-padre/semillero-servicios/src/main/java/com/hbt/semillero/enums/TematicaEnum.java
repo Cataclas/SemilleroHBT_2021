@@ -4,11 +4,9 @@
 package com.hbt.semillero.enums;
 
 /**
- * <b>Descripción:<b> Clase que determina la enumeración para representar los
- * tipos de temática aceptados por un comic
- * 
+ * <b>Descripción:</b> Clase que determina la enumeración para representar las
+ * Temáticas aceptados por un comic
  * @author cataclas
- * @version
  */
 public enum TematicaEnum {
 	AVENTURAS("enum.tematica.aventuras"), 
@@ -20,13 +18,13 @@ public enum TematicaEnum {
 	HORROR("enum.tematica.horror");
 	
 	/**
-	 * Atributo que contiene la clave del mensaje para la internacionalizacion
+	 * Atributo que contiene la clave del mensaje
 	 */
 	private String codigoMensaje;
 
 	/**
 	 * Constructor que recibe como parametro el codigo del mensaje
-	 * @param codigoMensaje, Clave del mensaje para para internacionalizacion
+	 * @param codigoMensaje
 	 */
 	TematicaEnum(String codigoMensaje) {
 		this.codigoMensaje = codigoMensaje;

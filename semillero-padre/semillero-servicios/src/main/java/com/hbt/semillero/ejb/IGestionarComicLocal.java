@@ -7,27 +7,31 @@ import javax.ejb.Local;
 import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.NombrePrecioComicDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
-import com.hbt.semillero.dto.TamanioNombreComicDTO;
 
 @Local
 public interface IGestionarComicLocal {
 	
 	/**
 	 * Método para crear/agregar Comic a la base de datos
+	 * @author cataclas
 	 * @param comicDTO
 	 * @return ComicDTO
 	 * @throws Exception
 	 */
 	public ComicDTO crearComic(ComicDTO comicDTO) throws Exception;
 	
-	/**
-	 * Método para listar todos los Comics guardados en la base de datos
-	 * @return List<ComicDTO>
-	 */
-	public List<ComicDTO> listarComics();
 
 	/**
+	 * Método para listar todos los Comics guardados en la base de datos
+	 * @author cataclas
+	 * @param search
+	 * @return List<ComicDTO>
+	 */
+	public List<ComicDTO> listarComics(String search);
+	
+	/**
 	 * Método para consultar un Comic por id, en la base de datos
+	 * @author cataclas
 	 * @param idComic
 	 * @return ComicDTO
 	 */
@@ -35,13 +39,15 @@ public interface IGestionarComicLocal {
 	
 	/**
 	 * Método para actualizar/modificar un Comic en la base de datos
+	 * @author cataclas
 	 * @param comicDTO
-	 * @return ResultadoDTO
+	 * @return ComicDTO
 	 */
 	public ComicDTO actualizarComic(ComicDTO comicDTO);
 	
 	/**
 	 * Método para eliminar un Comic de la base de datos
+	 * @author cataclas
 	 * @param idComic
 	 * @return ResultadoDTO
 	 */
@@ -49,6 +55,7 @@ public interface IGestionarComicLocal {
 	
 	/**
 	 * Método para consultar nombre y precio de un Comic por id en la base de datos
+	 * @author cataclas
 	 * @param idComic
 	 * @return NombrePrecioComicDTO
 	 */
@@ -56,8 +63,9 @@ public interface IGestionarComicLocal {
 
 	/**
 	 * Método para listar nombre de comics, por los que superan el tamaño dado como parámetro y los que no
-	 * @param tamanio
-	 * @return ResultadoDTO
+	 * @author cataclas
+	 * @param lengthComic
+	 * @return List<Object>
 	 */
 	public List<Object> consultarComicTamanioNombre (Short lengthComic);
 

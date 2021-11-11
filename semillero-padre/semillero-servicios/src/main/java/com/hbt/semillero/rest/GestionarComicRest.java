@@ -1,5 +1,6 @@
 package com.hbt.semillero.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,19 +17,24 @@ import javax.ws.rs.core.MediaType;
 import com.hbt.semillero.dto.ComicDTO;
 import com.hbt.semillero.dto.NombrePrecioComicDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
-import com.hbt.semillero.dto.TamanioNombreComicDTO;
 import com.hbt.semillero.ejb.IGestionarComicLocal;
 
-
-
-//cd semillero-servicios & mvn clean install & cd.. & cd semillero-ear & mvn clean install & cd..
-
+/**
+ * <b>Descripción:</b> Clase que determina las condiciones de comunicación para acceder a los servicios
+ * @author cataclas
+ */
 @Path("/gestionarComic")
 public class GestionarComicRest {
 	
 	@EJB
 	private IGestionarComicLocal gestionarComicLocal;
 	
+	/**
+	 * Metodo encargado de crear Comics
+	 * @author cataclas
+	 * @param comicDTO
+	 * @return ComicDTO
+	 */
 	@POST
 	@Path("/crearComic")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -44,13 +50,31 @@ public class GestionarComicRest {
 		return comicDTOResult;
 	}
 
+	/**
+	 * Metodo encargado de Listar todos los comics
+	 * @author cataclas
+	 * @param search
+	 * @return List<ComicDTO>
+	 */
 	@GET
 	@Path("/listarComics")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ComicDTO> listarComics(){
-		return gestionarComicLocal.listarComics();
+	public List<ComicDTO> listarComics(@QueryParam("search") String search) {
+		List<ComicDTO> lista = new ArrayList<>();
+		try {
+			lista = this.gestionarComicLocal.listarComics(search);
+		}  catch (Exception e) {
+			System.out.println("Se ha presentado un error tecnico, causa: " + e.getMessage());
+		}
+		return lista;
 	}
 
+	/**
+	 * Metodo encargado de consultar un comic por su id
+	 * @author cataclas
+	 * @param idComic
+	 * @return ComicDTO
+	 */
 	@GET
 	@Path("/consultarComic")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -63,10 +87,10 @@ public class GestionarComicRest {
 	}
 	
 	/**
-	 * 
-	 * Metodo encargado de modificar el nombre de un usuario
-	 * @param idComic identificador del comic a buscar
-	 * @param nombre nombre nuevo del comic
+	 * Metodo encargado de actualizar/modificar un comic
+	 * @author cataclas
+	 * @param comicDTO
+	 * @return ComicDTO
 	 */
 	@PATCH
 	@Path("/actualizarComic")
@@ -89,15 +113,15 @@ public class GestionarComicRest {
 	}
 
 	/**
-	 * 
-	 * Metodo encargado de eliminar un comic dado el id
-	 * 
-	 * @param idComic identificador del comic
+	 * Metodo encargado de eliminar un comic
+	 * @author cataclas
+	 * @param idComic
+	 * @return ResultadoDTO
 	 */
-	@DELETE
+	@POST
 	@Path("/eliminarComic")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResultadoDTO eliminarComic(@QueryParam("idComic") Long idComic) {
+	public ResultadoDTO eliminarComic(Long idComic) {
 		ResultadoDTO resultadoDTO = new ResultadoDTO ();
 		if(idComic!=null) {
 			try {	
@@ -113,6 +137,13 @@ public class GestionarComicRest {
 		return resultadoDTO;
 	}
 	
+	/**
+	 * 
+	 * Metodo encargado de consultar el nombre y precio de un comic
+	 * @author cataclas
+	 * @param idComic
+	 * @return NombrePrecioComicDTO
+	 */
 	@GET
 	@Path("/consultarNombrePrecioComic")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -120,6 +151,12 @@ public class GestionarComicRest {
 		return this.gestionarComicLocal.consultarNombrePrecioComic(idComic);
 	}
 
+	/**
+	 * Método para listar nombre de comics, por los que superan el tamaño dado como parámetro y los que no
+	 * @author cataclas
+	 * @param lengthComic
+	 * @return List<Object>
+	 */
 	@GET
 	@Path("/consultarComicTamanioNombre")
 	@Produces(MediaType.APPLICATION_JSON)

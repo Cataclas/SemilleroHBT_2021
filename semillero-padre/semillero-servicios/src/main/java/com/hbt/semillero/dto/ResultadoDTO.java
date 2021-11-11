@@ -3,15 +3,13 @@ package com.hbt.semillero.dto;
 import java.io.Serializable;
 
 /**
- * Indica el resultado de ejecución.
- * 
+ * <b>Descripción:</b> Clase que indica el resultado de ejecución
  * @author cataclas
- *
  */
 public class ResultadoDTO implements Serializable {
-
+	
 	/**
-	 * Serial
+	 * Serializador de la clase
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
@@ -23,12 +21,15 @@ public class ResultadoDTO implements Serializable {
 	 */
 	private String mensajeEjecucion;
 
+	/**
+	 * Constructor vacio de la clase.
+	 */
 	public ResultadoDTO() {
-		
+		// Constructor vacio
 	}
+	
 	/**
 	 * Constructor de la clase.
-	 * 
 	 * @param exitoso
 	 * @param mensajeEjecucion
 	 */

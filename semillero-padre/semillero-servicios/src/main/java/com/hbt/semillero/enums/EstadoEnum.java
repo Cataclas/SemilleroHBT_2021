@@ -4,13 +4,10 @@
 package com.hbt.semillero.enums;
 
 /**
- * <b>Descripción:<b> Clase que determina la enumeracón para representar los
+ * <b>Descripción:</b> Clase que determina la enumeración para representar los
  * estados aceptados por un comic
- * 
  * @author cataclas
- * @version
  */
-
 public enum EstadoEnum {
 	ACTIVO("enum.estado.activo"),
 	INACTIVO("enum.estado.inactivo");
