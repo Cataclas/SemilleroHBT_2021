@@ -83,8 +83,8 @@ export class GestionarCompraComicComponent implements OnInit {
    * Navega de vuelva a la gestion de comics
    * @param comic 
    */
-  public volver(comic: ComicDTO): void {
-    this.router.navigate(['gestionar-compra-comic', comic]);
+  public volver(): void {
+    this.router.navigate(['gestionar-comic']);
   }
   get f() {
     return this.gestionarCompraComicForm.controls
