@@ -58,8 +58,11 @@ export class GestionarCompraComicComponent implements OnInit {
     this.mostrarMensaje = false;
   }
 
+  /**
+   * Metodo para comprar Comic
+   */
   public comprarComic() {
-    // this.comicDTO.cantidad = this.gestionarCompraComicForm.controls.cantidad.value;
+    this.comicDTO.cantidad = this.gestionarCompraComicForm.controls.cantidad.value;
 
     this.gestionComicService.comprarComic(this.comicDTO).subscribe(data => {
       if (data.exitoso) {
@@ -76,7 +79,13 @@ export class GestionarCompraComicComponent implements OnInit {
       console.log(error);
     })
   }
-
+  /**
+   * Navega de vuelva a la gestion de comics
+   * @param comic 
+   */
+  public volver(comic: ComicDTO): void {
+    this.router.navigate(['gestionar-compra-comic', comic]);
+  }
   get f() {
     return this.gestionarCompraComicForm.controls
   }

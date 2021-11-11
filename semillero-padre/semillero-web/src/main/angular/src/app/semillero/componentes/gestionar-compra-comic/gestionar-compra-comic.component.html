@@ -22,6 +22,9 @@
         <button class="btn btn-block btn-success" (click)="comprarComic()">
             Vender
         </button>
+        <button class="btn btn-block btn-danger" (click)="volver()">
+            Cancelar
+        </button>
     </form>
     <div class="alert alert-danger" *ngIf="mostrarMensaje" [ngClass]="{ 'alert-success' : exitoso }" role="alert">
         {{ mensajeEjecucion }}

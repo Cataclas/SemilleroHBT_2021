@@ -210,7 +210,7 @@ export class GestionarComicComponent implements OnInit {
    * @param idComic 
    */
   public eliminarComic(idComic: Number): void {
-    if(confirm("¿Desea eliminar este registro?")){
+    if (confirm("¿Desea eliminar este registro?")) {
       this.gestionComicService.eliminarComic(idComic).subscribe(data => {
         if (data.exitoso) {
           this.listarComics("");
@@ -233,7 +233,7 @@ export class GestionarComicComponent implements OnInit {
     this.index = posicion;
     let comic = this.listaComics[posicion];
     let idComic = comic.id;
-    
+
     if (this.index >= 0) {
       this.gestionarComicForm.controls.nombre;
       this.gestionarComicForm.controls.editorial.disable();
@@ -305,8 +305,11 @@ export class GestionarComicComponent implements OnInit {
   public cerrar(): void {
     this.mostrarItem = false;
   }
-
-  public irAComprar(comic : ComicDTO) : void {
+  /**
+   * Navega a la ventana de compra 
+   * @param comic
+   */
+  public irAComprar(comic: ComicDTO): void {
     this.router.navigate(['gestionar-compra-comic', comic]);
   }
 
