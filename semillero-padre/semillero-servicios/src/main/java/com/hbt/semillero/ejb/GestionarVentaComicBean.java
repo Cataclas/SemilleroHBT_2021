@@ -1,7 +1,9 @@
 /**
- * GestionarCompraComicBean.java
+ * GestionarVentaComicBean.java
  */
 package com.hbt.semillero.ejb;
+
+import java.time.LocalDate;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,55 +18,43 @@ import com.hbt.semillero.entidad.Comic;
 import com.hbt.semillero.enums.EstadoEnum;
 
 /**
- * <b>Descripción:</b> Clase que determina
+ * <b>Descripción:</b> Clase que determina la lógica que permite gestionar la venta de comics
  * @author cataclas
  */
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class GestionarCompraComicBean implements IGestionarCompraComicLocal {
+public class GestionarVentaComicBean implements IGestionarVentaComicLocal {
 
 	@PersistenceContext
 	public EntityManager em;
 	
-	/** 
-	 * @see com.hbt.semillero.ejb.IGestionarCompraComicLocal#comprarComic(com.hbt.semillero.dto.ComicDTO)
+	/**
+	 * Metodo encargado de la venta de comics 
+	 * @see com.hbt.semillero.ejb.IGestionarVentaComicLocal#venderComic(com.hbt.semillero.dto.ComicDTO)
 	 */
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public ComicDTO comprarComic(ComicDTO comicDTO)  throws Exception {
-		ComicDTO comicDTOResult = new ComicDTO();
+	public ComicDTO venderComic(ComicDTO comicDTO) throws Exception {
 		Comic comic = em.find(Comic.class, comicDTO.getId());
 		
-		if(comicDTO.getEstadoEnum().equals(EstadoEnum.INACTIVO)) {
+		if(comic.getEstadoEnum().equals(EstadoEnum.INACTIVO)) {
 			throw new Exception("El comic seleccionado no cuenta con stock en bodega");
-		}
-		
-		if(comicDTO.getCantidad() < comic.getCantidad()) {
+		} else if(comicDTO.getCantidad() <= comic.getCantidad()) {
 			Long stock = comic.getCantidad() - comicDTO.getCantidad();
-			comicDTO.setCantidad(stock);
-			Comic comicVenta = this.convertirComicDTOToComic(comicDTO);		
-			em.merge(comicVenta);
+			comic.setCantidad(stock);
+			comic.setFechaVenta(LocalDate.now());
 			
-			comicDTOResult = this.convertirComicToComicDTO(comicVenta);
-			comicDTOResult.setExitoso(true);
-			comicDTOResult.setMensajeEjecucion("La compra del comic "+ comicVenta.getNombre() + " fue exitosa");
-		} else if(comicDTO.getCantidad() == comic.getCantidad()) {
-			Long stock = comic.getCantidad() - comicDTO.getCantidad();
-			comicDTO.setCantidad(stock);
-			comicDTO.setEstadoEnum(EstadoEnum.INACTIVO);
-			Comic comicVenta = this.convertirComicDTOToComic(comicDTO);		
-			em.merge(comicVenta);
-			
-			comicDTOResult = this.convertirComicToComicDTO(comicVenta);
-			comicDTOResult.setExitoso(true);
-			comicDTOResult.setMensajeEjecucion("La compra del comic "+ comicVenta.getNombre() + " fue exitosa");
+			if (stock == 0) {
+				comic.setEstadoEnum(EstadoEnum.INACTIVO);
+			}
+				
+			em.merge(comic);
 		} else if(comicDTO.getCantidad() > comic.getCantidad()) {
-			throw new Exception("La cantidad solicitada supera la existencia de comics: " + comic.getCantidad());
+			throw new Exception("La cantidad solicitada supera la existencia actual del comic: " + comic.getCantidad());
 		}
-		
-		return comicDTOResult;
+		ComicDTO comicVenta = this.convertirComicToComicDTO(comic);
+		return comicVenta;
 	}
-	
 
 	/**
 	 * Metodo encargado de convertir un objeto Comic a ComicDTO
@@ -109,5 +99,4 @@ public class GestionarCompraComicBean implements IGestionarCompraComicLocal {
 		comic.setCantidad(comicDTO.getCantidad());
 		return comic;
 	}
-
 }

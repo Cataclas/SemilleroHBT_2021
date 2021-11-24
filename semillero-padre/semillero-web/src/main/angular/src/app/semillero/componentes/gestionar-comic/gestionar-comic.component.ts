@@ -305,12 +305,13 @@ export class GestionarComicComponent implements OnInit {
   public cerrar(): void {
     this.mostrarItem = false;
   }
+  
   /**
-   * Navega a la ventana de compra 
+   * Navega a la ventana de venta 
    * @param comic
    */
-  public irAComprar(comic: ComicDTO): void {
-    this.router.navigate(['gestionar-compra-comic', comic]);
+  public IrAVenderComic(comic: ComicDTO): void {
+    this.router.navigate(['gestionar-venta-comic', comic]);
   }
 
   get f() {

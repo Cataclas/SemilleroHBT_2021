@@ -1,28 +1,28 @@
 export class ComicDTO {
     
-    public id : number;
+    public id : number = null;
 
-    public nombre : string;
+    public nombre : string = null;
 
-    public editorial : string;
+    public editorial : string = null;
     
-    public tematicaEnum : string;
+    public tematicaEnum : string = null;
     
-    public coleccion : string;
+    public coleccion : string = null;
 
-    public numeroPaginas : number;
+    public numeroPaginas : number = null;
     
-    public precio : number;
+    public precio : number = null;
     
-    public autores : string;
+    public autores : string = null;
     
-    public color : boolean;
+    public color : boolean = null;
     
-    public fechaVenta : Date;
+    public fechaVenta : Date = null;
 
-    public estadoEnum : string;
+    public estadoEnum : string = null;
 
-    public cantidad : number;
+    public cantidad : number = null;
 
     constructor(){
         

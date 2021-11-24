@@ -5,18 +5,30 @@ Proyecto - Semillero HBT 2021 (Java - Angular)
 
 <img src="screenshot/inicio.png">
 
-## Lista
+## Lista de Comics
 
 <img src="screenshot/listar.png">
 
-## Consulta Uno
+## Búsqueda de Comic
+
+<img src="screenshot/search.png">
+
+## Consulta de un Comic
 
 <img src="screenshot/consulta_uno.png">
 
-## Formulario
+## Formulario para Crear/Editar Comics
 
 <img src="screenshot/formulario.png">
 
-## Compra
+## Venta de Comic (Exitosa)
 
-<img src="screenshot/compra.png">
+<img src="screenshot/exitosa.png">
+
+## Venta de Comic (Sin stock - INACTIVO)
+
+<img src="screenshot/sin_stock.png">
+
+## Venta de Comic (Cantidad superior a la existente)
+
+<img src="screenshot/superior.png">

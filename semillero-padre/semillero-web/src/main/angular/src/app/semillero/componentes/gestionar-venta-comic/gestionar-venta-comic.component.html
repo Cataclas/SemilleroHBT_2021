@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <h3 class="fw-bold"><span class="fa-arrow-right fas text-primary"></span> Gestionar Venta de Comics</h3>
+    <hr>
+
+    <form [formGroup]="gestionarVentaComicForm">
+        <div class="row">
+            <div class="col-12">
+                <label class="mb-0 mt-3 form-label" for="nombreComic">Nombre:</label>
+                <input type="text" class="form-control" id="nombreComic" formControlName="nombre" disabled [ngClass]="{ 'is-invalid' : submitted && f.nombre.errors }">
+                <div *ngIf="f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <label class="mb-0 mt-3 form-label" for="cantidadComic">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidadComic" formControlName="cantidad" min="1" [ngClass]="{ 'is-invalid' : submitted && f.cantidad.errors }">
+                <div *ngIf="f.cantidad.errors">
+                    <span class="text-danger" *ngIf="f.cantidad.errors.required">Campo requerido.</span>
+                    <span class="text-danger" *ngIf="f.cantidad.errors.min">La cantidad mínima admitida es 1.</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between py-3">
+            <button class="border-0 btn btn-block btn-danger shadow-sm text-white" (click)="volver()">
+                Volver
+            </button>
+            <button class="border-0 btn btn-block btn-success shadow-sm text-white" (click)="venderComic()">
+                Vender
+            </button>
+        </div>
+    </form>
+    <div class="alert align-items-center d-flex" *ngIf="mostrarMensaje" [ngClass]="exitoso ? 'alert-success' : 'alert-danger'" role="alert">
+        <span class="fa fa-2x pe-3" [ngClass]="exitoso ? 'fa-check-circle text-success' : 'fa-exclamation-triangle text-danger'"></span> {{ mensajeEjecucion }}
+    </div>
+</div>

@@ -146,6 +146,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let comic of listaComics;let i=index;">
+                            <!-- <tr *ngFor="let comic of listaComics;let i=index;" [ngClass]="{ 'table-danger' : comic.cantidad == 0 }"> -->
                             <th scope="row">{{i+1}}</th>
                             <td>{{comic.nombre }}</td>
                             <td>{{comic.tematicaEnum | uppercase }}</td>
@@ -157,10 +158,10 @@
                             <td>{{comic.color ? 'Si' : 'No' }}</td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <i class="2x fa-search fas ml-1 text-primary" (click)="imprimirInfoComic(comic)" title="Consultar"></i>
-                                    <i class="2x fa-pencil-alt fas ml-1 text-warning" data-bs-toggle="modal" data-bs-target="#myModal" (click)="abrirForm(i)" title="Editar"></i>
-                                    <i class="2x fa-times-circle far ml-1 text-danger" (click)="eliminarComic(comic.id)" title="Eliminar"></i>
-                                    <i class="2x fa-dollar-sign fas ml-1 text-success" (click)="irAComprar(comic)" title="Comprar"></i>
+                                    <i class="2x fa-search fas ml-1 px-1 text-primary" (click)="imprimirInfoComic(comic)" title="Consultar"></i>
+                                    <i class="2x fa-pencil-alt fas ml-1 px-1 text-warning" data-bs-toggle="modal" data-bs-target="#myModal" (click)="abrirForm(i)" title="Editar"></i>
+                                    <i class="2x fa-times-circle far ml-1 px-1 text-danger" (click)="eliminarComic(comic.id)" title="Eliminar"></i>
+                                    <i class="2x fa-dollar-sign fas ml-1 px-1 text-success" (click)="IrAVenderComic(comic)" title="Vender"></i>
                                 </div>
                             </td>
                         </tr>
